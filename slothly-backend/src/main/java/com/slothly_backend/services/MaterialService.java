@@ -46,8 +46,5 @@ public class MaterialService {
                 .orElse(null);
     }
 
-    public void addUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-    }
+
 }

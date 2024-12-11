@@ -3,6 +3,7 @@ package com.slothly_backend.controller;
 import com.slothly_backend.models.Material;
 import com.slothly_backend.models.User;
 import com.slothly_backend.services.MaterialService;
+import com.slothly_backend.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 public class MaterialController {
 
     private MaterialService materialService;
+    private UserService userService;
 
     @GetMapping("/welcome")
     public String welcome() {
@@ -34,7 +36,7 @@ public class MaterialController {
 
     @PostMapping("/new-user")
     public String newUser(@RequestBody User user) {
-        materialService.addUser(user);
+        userService.addUser(user);
         return "User added successfully";
     }
 }
