@@ -33,7 +33,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("api/material/welcome","api/material/new-user").permitAll()
+                        .requestMatchers("api/material/welcome","api/material/new-user", "/new-user").permitAll()
+                        .requestMatchers("/profile", "/remove").authenticated()
                         .requestMatchers("api/material/**").authenticated()
                 )
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)

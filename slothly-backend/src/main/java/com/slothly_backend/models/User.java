@@ -2,6 +2,7 @@ package com.slothly_backend.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 @Data
 @Entity
@@ -17,6 +18,5 @@ public class User {
     private String password;
 
     private String role;
-
 
 }

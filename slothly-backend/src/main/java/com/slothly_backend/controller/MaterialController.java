@@ -34,9 +34,4 @@ public class MaterialController {
         return materialService.getMaterialById(id);
     }
 
-    @PostMapping("/new-user")
-    public String newUser(@RequestBody User user) {
-        userService.addUser(user);
-        return "User added successfully";
-    }
 }
