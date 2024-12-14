@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -33,14 +34,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors
-                        .configurationSource(request -> {
-                            var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-                            corsConfig.addAllowedOrigin("http://localhost:4200");  // Разрешить доступ только с этого порта
-                            corsConfig.addAllowedMethod("*");  // Разрешить все методы (GET, POST, PUT, DELETE и т.д.)
-                            corsConfig.addAllowedHeader("*");  // Разрешить все заголовки
-                            return corsConfig;
-                        }))
+                .cors(cors -> cors.configurationSource(request -> {
+                    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+                    corsConfig.addAllowedOrigin("http://localhost:4200");  // Allow access only from this origin
+                    corsConfig.addAllowedMethod("*");  // Allow all HTTP methods (GET, POST, PUT, DELETE, etc.)
+                    corsConfig.addAllowedHeader("*");  // Allow all headers
+                    corsConfig.setAllowCredentials(true); // Allow credentials (cookies, authorization headers, etc.)
+                    return corsConfig;
+                }))
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("api/material/welcome", "/sign-up", "/all-users").permitAll()
                         .requestMatchers("/profile", "/remove").authenticated()
@@ -49,6 +50,7 @@ public class SecurityConfig {
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .build();
     }
+
 
 
     @Bean
