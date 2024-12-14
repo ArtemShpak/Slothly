@@ -3,14 +3,14 @@ package com.slothly_backend.controller;
 import com.slothly_backend.models.User;
 import com.slothly_backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.Authenticator;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -38,9 +38,19 @@ public class UserController {
         return "User removed successfully";
     }
 
-    @PostMapping("/new-user")
-    public String newUser(@RequestBody User user) {
+    @PostMapping("/sign-up")
+    public ResponseEntity<String> newUser(@RequestBody User user) {
         userService.addUser(user);
-        return "User added successfully";
+        String responseText = "User " + user.getName() + " added successfully";
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .header("Content-Type", "application/json")
+                .body(responseText);
     }
+
+    @GetMapping("/all-users")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
 }

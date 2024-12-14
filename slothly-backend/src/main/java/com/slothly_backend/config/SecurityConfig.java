@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 
 @Configuration
@@ -32,14 +33,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors
+                        .configurationSource(request -> {
+                            var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+                            corsConfig.addAllowedOrigin("http://localhost:4200");  // Разрешить доступ только с этого порта
+                            corsConfig.addAllowedMethod("*");  // Разрешить все методы (GET, POST, PUT, DELETE и т.д.)
+                            corsConfig.addAllowedHeader("*");  // Разрешить все заголовки
+                            return corsConfig;
+                        }))
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("api/material/welcome","api/material/new-user", "/new-user").permitAll()
+                        .requestMatchers("api/material/welcome", "/sign-up", "/all-users").permitAll()
                         .requestMatchers("/profile", "/remove").authenticated()
                         .requestMatchers("api/material/**").authenticated()
                 )
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .build();
     }
+
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
