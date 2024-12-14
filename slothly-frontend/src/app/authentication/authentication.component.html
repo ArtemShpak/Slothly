@@ -1,0 +1,5 @@
+<app-sign-up *ngIf="SignUpState else Login"></app-sign-up>
+<div class="login-link">
+  Already have an account? <button (click)="onChangeState()">Sign in</button>
+</div>
+<ng-template #Login><app-log-in></app-log-in></ng-template>
