@@ -1,10 +1,9 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div><a href="https://github.com/RuchikG" class="navbar-brand">Ruchik Gabhawala</a></div>
         <ul class="navbar-nav navbar-collapse justify-content-end">
-            <!-- <li>
+            <li>
                 <a *ngIf="!isLoggedIn" class="nav-link" href="/login">Login</a>
-            </li> -->
+            </li>
             <li>
                 <a *ngIf="isLoggedIn" class="nav-link" href="/logout" (click)=handleLogout()>Logout</a>
             </li>
