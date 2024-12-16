@@ -1,8 +1,8 @@
-package com.slothly_backend.models;
+package com.slothly_backend.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
+
 
 @Data
 @Entity
@@ -10,13 +10,8 @@ import lombok.Getter;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column(unique = true)
-    private String name;
-
+    private Long id;
+    private String username;
     private String password;
-
     private String role;
-
 }
