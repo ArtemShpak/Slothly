@@ -4,7 +4,6 @@ import {SignUpService} from './sign-up.service';
 @Component({
   selector: 'app-sign-up',
   standalone: false,
-
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
