@@ -40,9 +40,12 @@ export class AuthService {
   }
 
   registerSuccessfulLogin(username: string, password: string) {
+    const expirationTime = Date.now() + 3600 * 1000; // Время жизни токена: 1 час
     sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, username);
     sessionStorage.setItem(this.USER_PASSWORD_SESSION_ATTRIBUTE_NAME, password);
+    sessionStorage.setItem('tokenExpiration', expirationTime.toString());
   }
+
 
   logout() {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);

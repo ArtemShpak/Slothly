@@ -19,7 +19,7 @@ export class MaterialComponent {
 
     console.log("HelloWorldComponent");
     this.materialService.materialService().subscribe( (result) => {
-      // result = this.material;
+      result = this.material;
       console.log(result);
     });
   }

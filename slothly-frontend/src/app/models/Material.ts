@@ -3,4 +3,5 @@ export class Material {
   description: string = '';
   price: number = 0;
   author: string = '';
+  type: string = '';
 }

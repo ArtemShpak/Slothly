@@ -12,14 +12,24 @@ export class HttpInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const username = sessionStorage.getItem('authenticatedUser');
     const password = sessionStorage.getItem('authenticatedPassword');
+    const tokenExpiration = sessionStorage.getItem('tokenExpiration');
 
-    if (username && password && req.url.indexOf('basicauth') === -1) {
+    if (username && password && tokenExpiration) {
+      const isTokenValid = Date.now() < parseInt(tokenExpiration, 10);
+
+      if (!isTokenValid) {
+        sessionStorage.clear(); // Очистить токен, если истек срок действия
+        console.error('Token expired');
+        return next.handle(req); // Можно добавить логику перенаправления на страницу логина
+      }
+
       const authReq = req.clone({
         headers: req.headers.set('Authorization', `Basic ${window.btoa(username + ":" + password)}`)
       });
       return next.handle(authReq);
-    } else {
-      return next.handle(req);
     }
+
+    return next.handle(req);
   }
+
 }

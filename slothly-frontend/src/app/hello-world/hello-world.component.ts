@@ -20,6 +20,7 @@ export class HelloWorldComponent implements OnInit {
 
   ngOnInit() {
     this.helloWorldService.helloWorldService().subscribe( (result) => {
+      console.log(result);
       this.message = result.content;
     });
   }

@@ -11,6 +11,6 @@ export class MaterialService {
 
   materialService() {
     //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa('javaguides' + ':' + 'password') });
-    return this.http.get<Material>('http://localhost:8080/api/v1/material');
+    return this.http.get('http://localhost:8080/api/v1/material');
   }
 }
