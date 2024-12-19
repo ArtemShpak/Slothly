@@ -13,7 +13,6 @@ export class AuthService {
   public password!: string;
 
   constructor(private http: HttpClient) {
-    // Инициализируем значения из sessionStorage при запуске
     const storedUsername = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
     const storedPassword = sessionStorage.getItem(this.USER_PASSWORD_SESSION_ATTRIBUTE_NAME);
 
@@ -60,5 +59,9 @@ export class AuthService {
 
   getLoggedInUserName() {
     return sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME) || '';
+  }
+
+  RegisterUser(user: any) {
+    return this.http.post("http://localhost:8080/api/v1/register", user, { responseType: 'text' });
   }
 }

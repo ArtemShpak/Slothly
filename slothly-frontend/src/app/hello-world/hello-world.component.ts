@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HelloWorldService} from './hello-world.service';
-import {AuthService} from '../authentication/log-in/auth.service';
+import {AuthService} from '../authentication/authentication/auth.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -27,6 +27,6 @@ export class HelloWorldComponent implements OnInit {
 
   onLogout() {
     this.auth.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 }
