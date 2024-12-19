@@ -1,27 +1,32 @@
-import { Component } from '@angular/core';
-import {MaterialService} from './material.service';
-import {Material} from '../models/Material';
+import {Component, OnInit} from '@angular/core';
+import { MaterialService } from './material.service';
 
 @Component({
   selector: 'app-material',
   standalone: false,
-
   templateUrl: './material.component.html',
-  styleUrl: './material.component.css'
+  styleUrls: ['./material.component.css']
 })
 export class MaterialComponent {
 
-  material: Material = new Material();
+  // materials:any = [];
+
+  material = {name: '', description: '', price: 0, type: '', author: ''};
 
   constructor(private materialService: MaterialService) { }
 
-  ngOnInit() {
+  // ngOnInit() {
+  //   // this.materials = [];
+  //   this.materialService.materialService().subscribe((result) => {
+  //     this.materials = result;
+  //     console.log(result);
+  //   });
+  // }
 
-    console.log("HelloWorldComponent");
-    this.materialService.materialService().subscribe( (result) => {
-      result = this.material;
+  onCreateMaterial(){
+    console.log(this.material);
+    this.materialService.createMaterial(this.material).subscribe((result) => {
       console.log(result);
     });
   }
-
 }

@@ -1,7 +1,7 @@
 export class Material {
-  name: string = '';
-  description: string = '';
-  price: number = 0;
-  author: string = '';
-  type: string = '';
+  name!: string;
+  description!: string;
+  price!: number;
+  author!: string;
+  type!: string;
 }

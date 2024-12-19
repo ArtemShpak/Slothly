@@ -11,7 +11,7 @@ export class SignUpComponent {
 
   signUpState = true;
 
-  user = { username: '', password: '', role: 'ROLE_USER', };
+  user = { username: '', password: '', role: 'ROLE_USER' };
 
   constructor(private signUp: SignUpService) { }
 

@@ -2,12 +2,13 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } fro
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {AuthService} from './authentication/log-in/auth.service';
+import {Router} from '@angular/router';
 
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
 
-    constructor(private authenticationService: AuthService) { }
+    constructor(private authenticationService: AuthService, private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const username = sessionStorage.getItem('authenticatedUser');
@@ -20,6 +21,7 @@ export class HttpInterceptorService implements HttpInterceptor {
       if (!isTokenValid) {
         sessionStorage.clear(); // Очистить токен, если истек срок действия
         console.error('Token expired');
+        this.router.navigate(['/login']);
         return next.handle(req); // Можно добавить логику перенаправления на страницу логина
       }
 
