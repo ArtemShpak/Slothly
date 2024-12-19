@@ -11,6 +11,7 @@ import { HelloWorldComponent } from './hello-world/hello-world.component';
 import {LoginComponent} from './authentication/log-in/log-in.component';
 import { LogOutComponent } from './authentication/log-out/log-out.component';
 import {HttpInterceptorService} from './httpInterceptor.service';
+import { MaterialComponent } from './material/material.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {HttpInterceptorService} from './httpInterceptor.service';
     SignUpComponent,
     HelloWorldComponent,
     LogOutComponent,
+    MaterialComponent,
   ],
   imports: [
     BrowserModule,

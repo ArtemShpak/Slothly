@@ -19,8 +19,6 @@ export class HelloWorldComponent implements OnInit {
     private router: Router ) { }
 
   ngOnInit() {
-
-    console.log("HelloWorldComponent");
     this.helloWorldService.helloWorldService().subscribe( (result) => {
       this.message = result.content;
     });
