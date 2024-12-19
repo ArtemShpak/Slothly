@@ -2,6 +2,7 @@ package com.slothly_backend.controller;
 
 import com.slothly_backend.bean.AuthenticationBean;
 import com.slothly_backend.entity.User;
+import com.slothly_backend.repository.UserRepository;
 import com.slothly_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ public class BasicAuthController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping(path = "/basicauth")
     public AuthenticationBean helloWorldBean() {
@@ -22,7 +25,12 @@ public class BasicAuthController {
 
     @PostMapping(path = "/register")
     public AuthenticationBean register(@RequestBody User user) {
-        userService.saveUser(user);
+        if (userRepository.existsByUsername(user.getUsername())) {
+            return new AuthenticationBean("Username already exists");
+        }
+        else {
+            userService.saveUser(user);
+        }
         return new AuthenticationBean("User registered successfully");
     }
 }

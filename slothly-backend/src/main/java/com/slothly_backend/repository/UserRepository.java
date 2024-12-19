@@ -5,5 +5,6 @@ import com.slothly_backend.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    com.slothly_backend.entity.User findByUsername(String username);
+    User findByUsername(String username);
+    boolean existsByUsername(String username);
 }
