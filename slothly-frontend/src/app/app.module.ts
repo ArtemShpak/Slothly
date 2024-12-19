@@ -11,7 +11,6 @@ import { HelloWorldComponent } from './hello-world/hello-world.component';
 import {LoginComponent} from './authentication/log-in/log-in.component';
 import { LogOutComponent } from './authentication/log-out/log-out.component';
 import {HttpInterceptorService} from './httpInterceptor.service';
-import {MenuComponent} from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import {MenuComponent} from './menu/menu.component';
     SignUpComponent,
     HelloWorldComponent,
     LogOutComponent,
-    MenuComponent
   ],
   imports: [
     BrowserModule,
