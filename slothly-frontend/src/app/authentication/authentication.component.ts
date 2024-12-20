@@ -44,7 +44,9 @@ export class AuthenticationComponent implements AfterViewInit {
       }, error => console.error(error));
   }
   onLogIn() {
-    this.authenticationService.authenticationService(this.user.username, this.user.password).subscribe((result) => {
+    console.log(this.username);
+    console.log(this.password);
+    this.authenticationService.authenticationService(this.username, this.password).subscribe((result) => {
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.successMessage = 'Login Successful.';
