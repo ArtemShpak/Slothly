@@ -1,0 +1,30 @@
+
+<div class="container">
+  <div class="left-pane"></div>
+  <div class="right-pane">
+    <h2>Create Account</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" [(ngModel)]="material.name" id="name" placeholder="Name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="type">Type</label>
+        <input type="text" [(ngModel)]="material.type" id="type" placeholder="Type" name="type">
+      </div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" [(ngModel)]="material.author" id="author" placeholder="Author" name="author">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" [(ngModel)]="material.description" id="description" placeholder="Description" name="description">
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" [(ngModel)]="material.price" id="price" placeholder="Price" name="price">
+      </div>
+      <button type="submit" class="btn" (click)="onCreateMaterial()">Create Material</button>
+    </form>
+  </div>
+</div>
