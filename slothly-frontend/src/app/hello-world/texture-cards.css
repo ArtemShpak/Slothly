@@ -11,6 +11,7 @@ body {
 .card-container {
   display: flex;
   gap: 20px;
+
 }
 
 .card {

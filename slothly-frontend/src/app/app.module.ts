@@ -6,16 +6,20 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import { HelloWorldComponent } from './hello-world/hello-world.component';
+import { TextureCards } from './hello-world/texture-cards';
 import {HttpInterceptorService} from './httpInterceptor.service';
 import { MaterialComponent } from './material/material.component';
+import { MainComponent } from './main/main.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthenticationComponent,
-    HelloWorldComponent,
-    MaterialComponent
+    TextureCards,
+    MaterialComponent,
+    MainComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

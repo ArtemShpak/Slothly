@@ -22,6 +22,7 @@ public class MaterialController {
 
     @GetMapping("/materials")
     public List<Material> getMaterials() {
+//        materialService.loadMaterials();
         return materialService.getMaterials();
     }
 

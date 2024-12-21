@@ -50,7 +50,7 @@ export class AuthenticationComponent implements AfterViewInit {
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.successMessage = 'Login Successful.';
-      this.router.navigate(['/hello-world']);
+      this.router.navigate(['/main-page']);
     }, () => {
       this.invalidLogin = true;
       this.loginSuccess = false;

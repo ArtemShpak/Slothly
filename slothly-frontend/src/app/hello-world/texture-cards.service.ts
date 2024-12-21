@@ -6,7 +6,7 @@ import {Material} from '../models/Material';
 @Injectable({
   providedIn: 'root'
 })
-export class HelloWorldService {
+export class TextureCardsService {
 
   constructor(private http: HttpClient) { }
 

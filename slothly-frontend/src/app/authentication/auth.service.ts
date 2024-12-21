@@ -39,29 +39,32 @@ export class AuthService {
   }
 
   registerSuccessfulLogin(username: string, password: string) {
-    const expirationTime = Date.now() + 3600 * 1000; // Время жизни токена: 1 час
-    sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, username);
-    sessionStorage.setItem(this.USER_PASSWORD_SESSION_ATTRIBUTE_NAME, password);
-    sessionStorage.setItem('tokenExpiration', expirationTime.toString());
+    const expirationTime = Date.now() + 3600 * 1000; // Token validity: 1 hour
   }
-
-
   logout() {
-    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
-    sessionStorage.removeItem(this.USER_PASSWORD_SESSION_ATTRIBUTE_NAME);
-    this.username = '';
-    this.password = '';
-  }
+      sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+      sessionStorage.removeItem(this.USER_PASSWORD_SESSION_ATTRIBUTE_NAME);
+      sessionStorage.removeItem('tokenExpiration');
+      this.username = '';
+      this.password = '';
+    }
 
-  isUserLoggedIn() {
-    return !!sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
-  }
+    isUserLoggedIn() {
+      const username = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+      const tokenExpiration = sessionStorage.getItem('tokenExpiration');
 
-  getLoggedInUserName() {
-    return sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME) || '';
-  }
+      if (username && tokenExpiration) {
+        const isTokenValid = Date.now() < parseInt(tokenExpiration, 10);
+        return isTokenValid;
+      }
+      return false;
+    }
 
-  RegisterUser(user: any) {
-    return this.http.post("http://localhost:8080/api/v1/register", user, { responseType: 'text' });
-  }
+    getLoggedInUserName() {
+      return sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME) || '';
+    }
+
+    RegisterUser(user: any) {
+      return this.http.post("http://localhost:8080/api/v1/register", user, { responseType: 'text' });
+    }
 }

@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { HelloWorldService } from './hello-world.service';
+import { TextureCardsService } from './texture-cards.service';
 import { AuthService } from '../authentication/auth.service';
 import { Router } from '@angular/router';
 import { Material } from '../models/Material';
 
 @Component({
-  selector: 'app-hello-world',
-  templateUrl: './hello-world.component.html',
-  styleUrls: ['./hello-world.component.css'],
+  selector: 'texture-cards',
+  templateUrl: './texture-cards.html',
+  styleUrls: ['./texture-cards.css'],
   standalone: false
 })
-export class HelloWorldComponent implements OnInit {
+export class TextureCards implements OnInit {
 
   materials: any = [];
 
   constructor(
-    private helloWorldService: HelloWorldService,
+    private helloWorldService: TextureCardsService,
     private auth: AuthService,
     private router: Router ) { }
 
