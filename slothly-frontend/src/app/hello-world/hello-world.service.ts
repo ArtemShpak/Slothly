@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Message} from '../message';
 import {HttpClient} from '@angular/common/http';
+import {Message} from '../models/Message';
 import {Material} from '../models/Material';
 
 @Injectable({
