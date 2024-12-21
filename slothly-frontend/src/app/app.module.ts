@@ -15,7 +15,7 @@ import { MaterialComponent } from './material/material.component';
     AppComponent,
     AuthenticationComponent,
     HelloWorldComponent,
-    MaterialComponent,
+    MaterialComponent
   ],
   imports: [
     BrowserModule,

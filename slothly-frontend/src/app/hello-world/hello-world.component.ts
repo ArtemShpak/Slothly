@@ -1,27 +1,29 @@
-import {Component, OnInit} from '@angular/core';
-import {HelloWorldService} from './hello-world.service';
-import {AuthService} from '../authentication/auth.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { HelloWorldService } from './hello-world.service';
+import { AuthService } from '../authentication/auth.service';
+import { Router } from '@angular/router';
+import { Material } from '../models/Material';
 
 @Component({
   selector: 'app-hello-world',
-  standalone: false,
   templateUrl: './hello-world.component.html',
-  styleUrl: './hello-world.component.css'
+  styleUrls: ['./hello-world.component.css'],
+  standalone: false
 })
 export class HelloWorldComponent implements OnInit {
 
-  message!: string;
+  materials: any = [];
 
   constructor(
     private helloWorldService: HelloWorldService,
-    private auth:AuthService,
+    private auth: AuthService,
     private router: Router ) { }
 
   ngOnInit() {
-    this.helloWorldService.helloWorldService().subscribe( (result) => {
+    this.materials = [];
+    this.helloWorldService.helloWorldService().subscribe((result) => {
       console.log(result);
-      this.message = result.content;
+      this.materials = result;
     });
   }
 

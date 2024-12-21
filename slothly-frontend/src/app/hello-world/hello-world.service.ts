@@ -11,7 +11,6 @@ export class HelloWorldService {
   constructor(private http: HttpClient) { }
 
   helloWorldService() {
-    //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa('javaguides' + ':' + 'password') });
-    return this.http.get<Message>('http://localhost:8080/api/v1/profile');
+    return this.http.get('http://localhost:8080/api/v1/materials');
   }
 }

@@ -1,3 +1,20 @@
-{{message}}
-<button (click)="onLogout()">Logout</button>
-<a href="/material">Check material</a>
+ <div *ngFor="let material of materials">
+<div class="card-container">
+  <div class="card">
+    <div class="card-header">
+      <img src="shoe.jpg" alt="Red High Heel">
+    </div>
+    <div class="card-body">
+      <h3>{{material.name}}</h3>
+      <p>{{material.description}}</p>
+      <div class="author">
+        <p>{{material.author}}</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">${{material.price}}</span>
+        <button class="add-to-cart">ADD TO CART</button>
+      </div>
+    </div>
+  </div>
+</div>
+ </div>
