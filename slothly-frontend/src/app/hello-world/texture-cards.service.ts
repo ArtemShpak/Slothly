@@ -10,7 +10,7 @@ export class TextureCardsService {
 
   constructor(private http: HttpClient) { }
 
-  helloWorldService() {
+  getTexturesCards() {
     return this.http.get('http://localhost:8080/api/v1/materials');
   }
 }

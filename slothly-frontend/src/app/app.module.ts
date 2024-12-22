@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import { TextureCards } from './hello-world/texture-cards';
+import { TextureCardsComponent } from './hello-world/texture-cards.component';
 import {HttpInterceptorService} from './httpInterceptor.service';
 import { MaterialComponent } from './material/material.component';
 import { MainComponent } from './main/main.component';
@@ -16,7 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
   declarations: [
     AppComponent,
     AuthenticationComponent,
-    TextureCards,
+    TextureCardsComponent,
     MaterialComponent,
     MainComponent,
     ProfileComponent

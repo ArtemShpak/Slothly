@@ -1,28 +1,27 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {AuthService} from './authentication/auth.service';
-import {Router} from '@angular/router';
-
+import { AuthService } from './authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
 
-    constructor(private authenticationService: AuthService, private router: Router) { }
+  constructor(private authenticationService: AuthService, private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const username = sessionStorage.getItem('authenticatedUser');
-    const password = sessionStorage.getItem('authenticatedPassword');
-    const tokenExpiration = sessionStorage.getItem('tokenExpiration');
+    const username = localStorage.getItem('authenticatedUser');
+    const password = localStorage.getItem('authenticatedPassword');
+    const tokenExpiration = localStorage.getItem('tokenExpiration');
 
     if (username && password && tokenExpiration) {
       const isTokenValid = Date.now() < parseInt(tokenExpiration, 10);
 
       if (!isTokenValid) {
-        sessionStorage.clear(); // Очистить токен, если истек срок действия
+        localStorage.clear(); // Clear token if expired
         console.error('Token expired');
         this.router.navigate(['/login']);
-        return next.handle(req); // Можно добавить логику перенаправления на страницу логина
+        return next.handle(req); // Optionally redirect to login page
       }
 
       const authReq = req.clone({
@@ -33,5 +32,4 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     return next.handle(req);
   }
-
 }

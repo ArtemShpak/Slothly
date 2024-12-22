@@ -6,11 +6,11 @@ import { Material } from '../models/Material';
 
 @Component({
   selector: 'texture-cards',
-  templateUrl: './texture-cards.html',
-  styleUrls: ['./texture-cards.css'],
+  templateUrl: './texture-cards.component.html',
+  styleUrls: ['./texture-cards.component.css'],
   standalone: false
 })
-export class TextureCards implements OnInit {
+export class TextureCardsComponent implements OnInit {
 
   materials: any = [];
 
@@ -21,7 +21,7 @@ export class TextureCards implements OnInit {
 
   ngOnInit() {
     this.materials = [];
-    this.helloWorldService.helloWorldService().subscribe((result) => {
+    this.helloWorldService.getTexturesCards().subscribe((result) => {
       console.log(result);
       this.materials = result;
     });

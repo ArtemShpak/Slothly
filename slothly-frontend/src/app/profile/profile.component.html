@@ -1,15 +1,17 @@
-
 <div class="profile-container">
   <div class="header">
     <div class="profile-pic">
-      <img src="profile.jpg" alt="Profile Picture">
+      <img src="/user.png" alt="Profile Picture">
     </div>
     <div class="profile-info">
-      <h1>Mark Williams</h1>
-      <p>New York</p>
-      <button>Edit profile</button>
+      <h1 class="user-name">{{profile.firstName}} {{profile.lastName}}</h1>
+      <button class="edit" (click)="toggleEditForm()">Edit profile</button>
+      <button class="create" (click)="toggleCreateMaterialForm()">Create lot</button>
     </div>
   </div>
+  <div *ngIf="isEditFormVisible else Edit" class="edit-form">
+    <div *ngIf="isCreateFormVisible else Create" class="edit-form">
+    </div>
   <div class="stats">
     <div>
       <strong>215</strong>
@@ -26,16 +28,62 @@
   </div>
   <div class="about">
     <h2>About</h2>
-    <p>Web Developer</p>
-    <p>Lives in New York</p>
-    <p>Photographer</p>
+    <p>{{profile.description}}</p>
   </div>
   <div class="recent-photos">
     <h2>Recent photos</h2>
     <a href="#">Show all</a>
     <div class="photos">
-      <img src="photo1.jpg" alt="Photo 1">
-      <img src="photo2.jpg" alt="Photo 2">
+      <texture-cards></texture-cards>
     </div>
   </div>
+  </div>
+  <ng-template #Edit>
+    <h2>Edit Profile</h2>
+    <form (ngSubmit)="onSubmit()">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" [(ngModel)]="profile.firstName" name="firstName" required>
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" [(ngModel)]="profile.lastName" name="lastName" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" [(ngModel)]="profile.description" name="description" required></textarea>
+
+      <button type="submit">Save</button>
+      <button type="button" (click)="toggleEditForm()">Cancel</button>
+    </form>
+  </ng-template>
+  <ng-template #Create>
+
+    <div class="container">
+      <div class="left-pane"></div>
+      <div class="right-pane">
+        <h2>Create Account</h2>
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" [(ngModel)]="material.name" id="name" placeholder="Name" name="name">
+          </div>
+          <div class="form-group">
+            <label for="type">Type</label>
+            <input type="text" [(ngModel)]="material.type" id="type" placeholder="Type" name="type">
+          </div>
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" [(ngModel)]="material.author" id="author" placeholder="Author" name="author">
+          </div>
+          <div class="form-group">
+            <label for="desc">Description</label>
+            <input type="text" [(ngModel)]="material.description" id="desc" placeholder="Description" name="description">
+          </div>
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" [(ngModel)]="material.price" id="price" placeholder="Price" name="price">
+          </div>
+          <button type="submit" class="btn" (click)="onCreateMaterial()">Create Material</button>
+        </form>
+      </div>
+    </div>
+  </ng-template>
 </div>

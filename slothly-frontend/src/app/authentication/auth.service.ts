@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
-  USER_PASSWORD_SESSION_ATTRIBUTE_NAME = 'authenticatedPassword';
+  USER_NAME_LOCAL_STORAGE_ATTRIBUTE_NAME = 'authenticatedUser';
+  USER_PASSWORD_LOCAL_STORAGE_ATTRIBUTE_NAME = 'authenticatedPassword';
 
   public username!: string;
   public password!: string;
 
   constructor(private http: HttpClient) {
-    const storedUsername = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
-    const storedPassword = sessionStorage.getItem(this.USER_PASSWORD_SESSION_ATTRIBUTE_NAME);
+    const storedUsername = localStorage.getItem(this.USER_NAME_LOCAL_STORAGE_ATTRIBUTE_NAME);
+    const storedPassword = localStorage.getItem(this.USER_PASSWORD_LOCAL_STORAGE_ATTRIBUTE_NAME);
 
     if (storedUsername && storedPassword) {
       this.username = storedUsername;
@@ -30,6 +31,10 @@ export class AuthService {
         this.username = username;
         this.password = password;
         this.registerSuccessfulLogin(username, password);
+      }),
+      catchError(error => {
+        console.error('Authentication error', error);
+        return throwError(error);
       })
     );
   }
@@ -39,32 +44,51 @@ export class AuthService {
   }
 
   registerSuccessfulLogin(username: string, password: string) {
+    localStorage.setItem(this.USER_NAME_LOCAL_STORAGE_ATTRIBUTE_NAME, username); // Добавьте эту строку
+    localStorage.setItem(this.USER_PASSWORD_LOCAL_STORAGE_ATTRIBUTE_NAME, password);
     const expirationTime = Date.now() + 3600 * 1000; // Token validity: 1 hour
+    localStorage.setItem('tokenExpiration', expirationTime.toString());
   }
+
+
   logout() {
-      sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
-      sessionStorage.removeItem(this.USER_PASSWORD_SESSION_ATTRIBUTE_NAME);
-      sessionStorage.removeItem('tokenExpiration');
-      this.username = '';
-      this.password = '';
-    }
+    localStorage.removeItem(this.USER_NAME_LOCAL_STORAGE_ATTRIBUTE_NAME);
+    localStorage.removeItem(this.USER_PASSWORD_LOCAL_STORAGE_ATTRIBUTE_NAME);
+    localStorage.removeItem('tokenExpiration');
+    this.username = '';
+    this.password = '';
+  }
 
-    isUserLoggedIn() {
-      const username = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
-      const tokenExpiration = sessionStorage.getItem('tokenExpiration');
+  isUserLoggedIn() {
+    const username = localStorage.getItem(this.USER_NAME_LOCAL_STORAGE_ATTRIBUTE_NAME);
+    const tokenExpiration = localStorage.getItem('tokenExpiration');
 
-      if (username && tokenExpiration) {
-        const isTokenValid = Date.now() < parseInt(tokenExpiration, 10);
-        return isTokenValid;
-      }
-      return false;
+    if (username && tokenExpiration) {
+      const isTokenValid = Date.now() < parseInt(tokenExpiration, 10);
+      return isTokenValid;
     }
+    return false;
+  }
 
-    getLoggedInUserName() {
-      return sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME) || '';
-    }
+  getLoggedInUserName() {
+    return localStorage.getItem(this.USER_NAME_LOCAL_STORAGE_ATTRIBUTE_NAME) || '';
+  }
 
-    RegisterUser(user: any) {
-      return this.http.post("http://localhost:8080/api/v1/register", user, { responseType: 'text' });
-    }
+  RegisterUser(user: any) {
+    return this.http.post("http://localhost:8080/api/v1/register", user, { responseType: 'text' })
+      .pipe(
+        catchError(error => {
+          console.error('Registration error', error);
+          return throwError(error);
+        })
+      );
+  }
+
+  getUserProfile() {
+    return this.http.get("http://localhost:8080/api/v1/profile");
+  }
+
+  updateProfile(profile: any) {
+    return this.http.put("http://localhost:8080/api/v1/profile", profile);
+  }
 }
