@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { MaterialService } from './material.service';
+import {AuthService} from '../authentication/auth.service';
 
 @Component({
   selector: 'app-material',
@@ -7,26 +8,21 @@ import { MaterialService } from './material.service';
   templateUrl: './material.component.html',
   styleUrls: ['./material.component.css']
 })
-export class MaterialComponent {
+export class MaterialComponent implements OnInit {
 
-  // materials:any = [];
+  materials:any = [];
+  user: string = '';
 
-  material = {name: '', description: '', price: 0, type: '', author: ''};
 
-  constructor(private materialService: MaterialService) { }
+  constructor(private materialService: MaterialService, private auth: AuthService) { }
 
-  // ngOnInit() {
-  //   // this.materials = [];
-  //   this.materialService.materialService().subscribe((result) => {
-  //     this.materials = result;
-  //     console.log(result);
-  //   });
-  // }
+  ngOnInit() {
 
-  onCreateMaterial(){
-    console.log(this.material);
-    this.materialService.createMaterial(this.material).subscribe((result) => {
+    this.materialService.materialService().subscribe((result) => {
+      this.materials = result;
+      alert(this.auth.getLoggedInUserName());
       console.log(result);
     });
   }
+
 }

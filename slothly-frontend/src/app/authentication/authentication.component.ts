@@ -34,7 +34,7 @@ export class AuthenticationComponent implements AfterViewInit {
     }
   }
 
-  user = { username: '', password: '', email: '', role: 'ROLE_USER' };
+  user = { username: '', password: '', email: '', role: 'USER' };
 
   constructor(private authenticationService:AuthService, private router: Router ) { }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../authentication/auth.service';
 import {MaterialService} from '../material/material.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -10,11 +11,15 @@ import {MaterialService} from '../material/material.service';
 })
 export class ProfileComponent implements OnInit {
   profile: any = {};
-  isEditFormVisible: boolean = false;
-  isCreateFormVisible: boolean = false;
+  isEditFormVisible: boolean = true;
+  isCreateFormVisible: boolean = true;
+  user: string = '';
   material = {name: '', description: '', price: 0, type: '', author: ''};
 
-  constructor(private profileService: AuthService, private materialService: MaterialService) { }
+  constructor(private profileService: AuthService,
+              private materialService: MaterialService,
+              private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     this.profileService.getUserProfile().subscribe((data: any) => {
@@ -30,16 +35,24 @@ export class ProfileComponent implements OnInit {
     this.isCreateFormVisible = !this.isCreateFormVisible;
   }
 
-  onSubmit() {
+  onUpdate() {
+    console.log(this.profile);
     this.profileService.updateProfile(this.profile).subscribe(() => {
-      this.toggleEditForm();
     });
+    this.toggleEditForm();
   }
 
   onCreateMaterial(){
+    this.user = this.auth.getLoggedInUserName();
+    this.material.author = this.user;
     console.log(this.material);
     this.materialService.createMaterial(this.material).subscribe((result) => {
       console.log(result);
     });
+  }
+
+  onLogout() {
+    this.auth.logout();
+    this.router.navigate(['']);
   }
 }

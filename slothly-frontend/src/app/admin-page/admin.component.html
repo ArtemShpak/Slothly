@@ -1,0 +1,23 @@
+<div>
+  <h2>Admin Page</h2>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <div *ngFor="let user of users">
+      <p>{{ user.id }}</p>
+      <p>{{ user.username }}</p>
+        <input type="text" [(ngModel)]="user.role">
+        <button (click)="removeUser(user.id)">Remove</button>
+        <button (click)="changeUserRole(user.id, user.role)">Change Role</button>
+    </div>
+    </tbody>
+  </table>
+</div>

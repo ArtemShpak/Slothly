@@ -13,6 +13,6 @@ export class MaterialService {
   }
 
   createMaterial(material: any) {
-    return this.http.post('http://localhost:8080/api/v1/createMaterials', material, { responseType: 'text' });
+    return this.http.post('http://localhost:8080/api/v1/addMaterial', material, { responseType: 'text' });
   }
 }

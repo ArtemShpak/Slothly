@@ -7,15 +7,16 @@
       <h1 class="user-name">{{profile.firstName}} {{profile.lastName}}</h1>
       <button class="edit" (click)="toggleEditForm()">Edit profile</button>
       <button class="create" (click)="toggleCreateMaterialForm()">Create lot</button>
+      <button class="logout" (click)="onLogout()">Logout</button>
     </div>
   </div>
+  <div *ngIf="isCreateFormVisible else Create" class="edit-form">
+  </div>
   <div *ngIf="isEditFormVisible else Edit" class="edit-form">
-    <div *ngIf="isCreateFormVisible else Create" class="edit-form">
-    </div>
   <div class="stats">
     <div>
       <strong>215</strong>
-      <p>Photos</p>
+      <p>Lots</p>
     </div>
     <div>
       <strong>745</strong>
@@ -31,8 +32,7 @@
     <p>{{profile.description}}</p>
   </div>
   <div class="recent-photos">
-    <h2>Recent photos</h2>
-    <a href="#">Show all</a>
+    <h2>All lots</h2>
     <div class="photos">
       <texture-cards></texture-cards>
     </div>
@@ -40,7 +40,7 @@
   </div>
   <ng-template #Edit>
     <h2>Edit Profile</h2>
-    <form (ngSubmit)="onSubmit()">
+    <form>
       <label for="firstName">First Name:</label>
       <input type="text" id="firstName" [(ngModel)]="profile.firstName" name="firstName" required>
 
@@ -50,7 +50,7 @@
       <label for="description">Description:</label>
       <textarea id="description" [(ngModel)]="profile.description" name="description" required></textarea>
 
-      <button type="submit">Save</button>
+      <button type="submit" (click)="onUpdate()">Save</button>
       <button type="button" (click)="toggleEditForm()">Cancel</button>
     </form>
   </ng-template>
@@ -59,7 +59,7 @@
     <div class="container">
       <div class="left-pane"></div>
       <div class="right-pane">
-        <h2>Create Account</h2>
+        <h2>Create lot</h2>
         <form>
           <div class="form-group">
             <label for="name">Name</label>
@@ -67,11 +67,11 @@
           </div>
           <div class="form-group">
             <label for="type">Type</label>
-            <input type="text" [(ngModel)]="material.type" id="type" placeholder="Type" name="type">
-          </div>
-          <div class="form-group">
-            <label for="author">Author</label>
-            <input type="text" [(ngModel)]="material.author" id="author" placeholder="Author" name="author">
+            <select [(ngModel)]="material.type" class="type" name="type">
+              <option value="Texture">Texture</option>
+              <option value="Mockup">Mockup</option>
+              <option value="Icon">Icon</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="desc">Description</label>
@@ -81,7 +81,7 @@
             <label for="price">Price</label>
             <input type="number" [(ngModel)]="material.price" id="price" placeholder="Price" name="price">
           </div>
-          <button type="submit" class="btn" (click)="onCreateMaterial()">Create Material</button>
+          <button type="submit" class="btn" (click)="onCreateMaterial()">Create lot</button>
         </form>
       </div>
     </div>

@@ -3,6 +3,7 @@
 .container-fluid {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .navbar-brand {
@@ -14,6 +15,8 @@
   flex-grow: 1;
   display: flex;
   justify-content: center;
+  width: 600px;
+  height: 20px;
 }
 
 .navbar-search input {
@@ -53,8 +56,8 @@
 }
 
 .navbar-icon {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   color: darkgreen;
 
 }
@@ -95,3 +98,73 @@ a {
 .cards-container {
   margin-left: 50px;
 }
+
+/* Общие стили */
+.navbar-search input {
+  width: 600px;
+}
+
+.navbar-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.type-list {
+  list-style: none;
+  padding: 0;
+}
+
+.type-item {
+  margin-bottom: 20px;
+}
+
+.type-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.type-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #000;
+}
+
+.type-link-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.type-list {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.product-cards-container {
+  margin-top: 60px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+}
+
+
