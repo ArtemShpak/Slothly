@@ -1,0 +1,12 @@
+<div>
+  <h1>Materials</h1>
+  <p>Logged in as: {{ user }}</p>
+  <ul>
+    <li *ngFor="let material of materials">
+      <span>{{ material.name }} - ${{ material.price }}</span>
+      <button (click)="deleteMaterial(material.id)">Delete</button>
+      <input type="number" [(ngModel)]="material.price" />
+      <button (click)="updateMaterial(material.id, material.price)">Update Price</button>
+    </li>
+  </ul>
+</div>

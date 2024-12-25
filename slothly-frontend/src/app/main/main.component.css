@@ -1,13 +1,15 @@
+/* Обновленные стили */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 .container-fluid {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 10px 20px;
 }
 
 .navbar-brand {
-  width: 256px;
+  flex-shrink: 0;
   margin-right: 30px;
 }
 
@@ -15,15 +17,14 @@
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  width: 600px;
-  height: 20px;
 }
 
 .navbar-search input {
-  width: 600px;
-  height: 20px;
+  width: 100%;
+  max-width: 600px;
+  height: 40px;
   border: none;
-  padding: 12px 16px;
+  padding: 8px 16px;
   font-size: 16px;
   outline: none;
   background-color: #f5f5f5;
@@ -35,101 +36,46 @@
 
 .navbar-nav {
   display: flex;
-  margin-left: auto;
-  margin-top: 20px;
+  align-items: center;
+  gap: 20px;
 }
 
 .nav-item {
-  margin-right: 10px;
-}
-.nav-item .navbar-icon[src="/user.png"] {
-  margin-right: 50px;
-  margin-left: 15px;/* Add margin to the right of the user icon */
-}
-
-.nav-item .navbar-icon[src="/cart.png"] {
-  margin-left: 15px;/* Add margin to the right of the cart icon */
-}
-
-.nav-item .navbar-icon[src="/notification.png"] {
-  margin-left: 50px;/* Add margin to the right of the notification icon */
+  display: flex;
+  align-items: center;
 }
 
 .navbar-icon {
-  width: 40px;
-  height: 40px;
-  color: darkgreen;
-
+  width: 32px;
+  height: 32px;
 }
 
 .type-list {
   margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .type-item {
-  margin-bottom: 10px;
-}
-
-li {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-  font-family: "Poppins", sans-serif;
-}
-
-.type-link {
   display: flex;
   align-items: center;
-  font-size: large;
-}
-
-.type-link-logo {
-  width: 35px; /* Adjust the size as needed */
-  height: 35px; /* Adjust the size as needed */
-  margin-right: 30px; /* Space between logo and text */
-}
-
-.container {
-  display: inline-block;
-}
-
-.cards-container {
-  margin-left: 50px;
-}
-
-/* Общие стили */
-.navbar-search input {
-  width: 600px;
-}
-
-.navbar-icon {
-  width: 24px;
-  height: 24px;
-}
-
-.type-list {
-  list-style: none;
-  padding: 0;
-}
-
-.type-item {
-  margin-bottom: 20px;
 }
 
 .type-section {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 20px;
 }
 
 .type-link {
-  text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  font-size: 18px;
+  text-decoration: none;
   color: #000;
+  font-family: "Poppins", sans-serif;
 }
 
 .type-link-logo {
@@ -142,18 +88,16 @@ a {
   justify-content: space-between;
 }
 
-.type-list {
-  flex: 1;
-  margin-right: 20px;
+.product-cards-container {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Уменьшено расстояние между карточками */
+  justify-content: flex-start; /* Выравнивание по началу контейнера */
+  padding: 0 10px; /* Добавляем отступы внутри контейнера */
+  box-sizing: border-box; /* Учитываем padding в ширине контейнера */
 }
 
-.product-cards-container {
-  margin-top: 60px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
 .product-card {
   background: #fff;
@@ -161,10 +105,10 @@ a {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(33.333% - 20px); /* Adjust the width as needed */
+  box-sizing: border-box;
 }
 
 p {
   font-family: "Poppins", sans-serif;
 }
-
-

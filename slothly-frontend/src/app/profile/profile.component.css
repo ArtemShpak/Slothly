@@ -165,17 +165,11 @@ button[type="submit"]:hover {
   background: #45a049;
 }
 
-/* Create Material styles */
 .container {
   display: flex;
   gap: 20px;
   padding: 20px;
-}
-
-.left-pane {
-  flex: 1;
-  background: #f9fff9;
-  border-radius: 8px;
+  width: 100%; /* Full width */
 }
 
 .right-pane {
@@ -230,5 +224,13 @@ select.type:focus {
   border-color: #4CAF50;
   outline: none;
   background-color: #fff;
+}
+
+.edit-template {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full viewport height */
+  padding: 20px;
 }
 

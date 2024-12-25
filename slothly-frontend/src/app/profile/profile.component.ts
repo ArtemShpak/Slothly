@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   profile: any = {};
   isEditFormVisible: boolean = true;
   isCreateFormVisible: boolean = true;
+  isStatFormVisible: boolean = false;
   user: string = '';
   material = {name: '', description: '', price: 0, type: '', author: ''};
 
@@ -29,11 +30,14 @@ export class ProfileComponent implements OnInit {
 
   toggleEditForm() {
     this.isEditFormVisible = !this.isEditFormVisible;
+    this.isStatFormVisible = !this.isEditFormVisible || !this.isCreateFormVisible;
   }
 
   toggleCreateMaterialForm() {
     this.isCreateFormVisible = !this.isCreateFormVisible;
+    this.isStatFormVisible = !this.isEditFormVisible || !this.isCreateFormVisible;
   }
+
 
   onUpdate() {
     console.log(this.profile);
@@ -49,6 +53,8 @@ export class ProfileComponent implements OnInit {
     this.materialService.createMaterial(this.material).subscribe((result) => {
       console.log(result);
     });
+    this.toggleCreateMaterialForm();
+    this.router.navigate(['/profile']);
   }
 
   onLogout() {

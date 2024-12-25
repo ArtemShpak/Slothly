@@ -10,54 +10,29 @@
       <button class="logout" (click)="onLogout()">Logout</button>
     </div>
   </div>
-  <div *ngIf="isCreateFormVisible else Create" class="edit-form">
-  </div>
-  <div *ngIf="isEditFormVisible else Edit" class="edit-form">
-  <div class="stats">
-    <div>
-      <strong>215</strong>
-      <p>Lots</p>
-    </div>
-    <div>
-      <strong>745</strong>
-      <p>Followers</p>
-    </div>
-    <div>
-      <strong>340</strong>
-      <p>Following</p>
-    </div>
-  </div>
-  <div class="about">
-    <h2>About</h2>
-    <p>{{profile.description}}</p>
-  </div>
-  <div class="recent-photos">
-    <h2>All lots</h2>
-    <div class="photos">
-      <texture-cards></texture-cards>
-    </div>
-  </div>
-  </div>
-  <ng-template #Edit>
-    <h2>Edit Profile</h2>
-    <form>
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" [(ngModel)]="profile.firstName" name="firstName" required>
-
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" [(ngModel)]="profile.lastName" name="lastName" required>
-
+  <ng-template #Edit class="edit-template">
+    <div class="right-pane">
+      <h2>Edit Profile</h2>
+      <form>
+        <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" [(ngModel)]="profile.firstName" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" [(ngModel)]="profile.lastName" name="lastName" required>
+      </div>
+      <div class="form-group">
       <label for="description">Description:</label>
       <textarea id="description" [(ngModel)]="profile.description" name="description" required></textarea>
-
+      </div>
       <button type="submit" (click)="onUpdate()">Save</button>
       <button type="button" (click)="toggleEditForm()">Cancel</button>
     </form>
+    </div>
   </ng-template>
   <ng-template #Create>
-
     <div class="container">
-      <div class="left-pane"></div>
       <div class="right-pane">
         <h2>Create lot</h2>
         <form>
@@ -86,4 +61,39 @@
       </div>
     </div>
   </ng-template>
+  <ng-template #Info>
+    <div class="stats">
+    <div>
+      <strong>215</strong>
+      <p>Lots</p>
+    </div>
+    <div>
+      <strong>745</strong>
+      <p>Followers</p>
+    </div>
+    <div>
+      <strong>340</strong>
+      <p>Following</p>
+    </div>
+  </div>
+    <div class="about">
+      <h2>About</h2>
+      <p>{{profile.description}}</p>
+    </div>
+    <div class="recent-photos">
+      <h2>All lots</h2>
+      <a href="/material">View all</a>
+      <div class="photos">
+        <texture-cards></texture-cards>
+      </div>
+    </div>
+  </ng-template>
+  <div *ngIf="isCreateFormVisible else Create" class="edit-form">
+  </div>
+  <div *ngIf="isEditFormVisible else Edit" class="edit-form">
 </div>
+  <div *ngIf="isStatFormVisible else Info" class="edit-form">
+  </div>
+</div>
+
+
