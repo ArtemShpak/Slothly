@@ -15,21 +15,14 @@ public class MaterialController {
     @Autowired
     private MaterialService materialService;
 
-    @GetMapping("/material")
-    public Material getMaterial() {
-        return new Material("Material", "Material description", 100, "Author", "Texture");
-    }
-
     @GetMapping("/materials")
-    public List<Material> getMaterials() {
-//        materialService.loadMaterials();
-        return materialService.getMaterials();
+    public List<Material> getAllMaterials() {
+        return materialService.getAllMaterials();
     }
 
-    @PostMapping("/createMaterials")
-    public String createMaterials(@RequestBody Material material) {
+    @PostMapping("/addMaterial")
+    public void addMaterial(@RequestBody Material material) {
         materialService.addMaterial(material);
-        return "Material added successfully";
     }
 
 }
