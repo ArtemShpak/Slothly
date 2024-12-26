@@ -41,8 +41,6 @@ public class BasicAuthController {
     }
     @GetMapping("/profile")
     public UserInfo getUserInfo() {
-        String user_role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        System.out.println(user_role);
         return userInfoService.getUserDetails();
     }
 

@@ -40,4 +40,14 @@ public class MaterialController {
         materialService.updateMaterial(materialId, material);
     }
 
+    @GetMapping("/allMaterials")
+    public List<Material> getAllMaterials() {
+        return materialService.getAllMaterials();
+    }
+
+    @GetMapping("/material/{materialType}")
+    public List<Material> getMaterialsByType(@PathVariable String materialType) {
+        return materialService.getMaterialByType(materialType);
+    }
+
 }

@@ -38,4 +38,8 @@ public class MaterialService {
         return materialRepository.findByAuthor(username);
     }
 
+    public List<Material>getMaterialByType(String materialType){
+        return materialRepository.findByType(materialType);
+    }
+
 }

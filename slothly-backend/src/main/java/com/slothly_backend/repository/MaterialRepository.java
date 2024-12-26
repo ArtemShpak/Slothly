@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface MaterialRepository extends JpaRepository<Material, Long> {
     List<Material> findByAuthor(String author);
+    List<Material> findByType(String type);
 }
