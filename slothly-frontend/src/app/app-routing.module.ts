@@ -13,10 +13,10 @@ const routes: Routes = [
   {path: '', component: AuthenticationComponent},
   {path: 'texture-cards', component: TextureCardsComponent, canActivate: [AuthGuard]},
   {path: 'material', component: MaterialComponent, canActivate: [AuthGuard]},
-  {path: 'main-page', component: MainComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'admin-page', component: AdminComponent}
+  {path: 'main-page', component: MainComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
+  {path: 'admin-page', component: AdminComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

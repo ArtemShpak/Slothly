@@ -13,6 +13,7 @@ import { MainComponent } from './main/main.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CartComponent } from './cart/cart.component';
 import { AdminComponent } from './admin-page/admin.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AdminComponent } from './admin-page/admin.component';
     MainComponent,
     ProfileComponent,
     CartComponent,
-    AdminComponent
+    AdminComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

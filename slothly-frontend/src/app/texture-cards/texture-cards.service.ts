@@ -14,4 +14,7 @@ export class TextureCardsService {
   getTexturesCards(): Observable<Material[]> {
     return this.http.get<Material[]>('http://localhost:8080/api/v1/materials');
   }
+  getAllCards(): Observable<Material[]> {
+    return this.http.get<Material[]>('http://localhost:8080/api/v1/allMaterials');
+  }
 }

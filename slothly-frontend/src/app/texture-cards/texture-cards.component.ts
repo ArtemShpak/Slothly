@@ -30,7 +30,7 @@ export class TextureCardsComponent implements OnInit {
 
   ngOnInit() {
     this.materials = [];
-    this.helloWorldService.getTexturesCards().subscribe((result) => {
+    this.helloWorldService.getAllCards().subscribe((result) => {
       console.log(result);
       this.materials = result;
     });

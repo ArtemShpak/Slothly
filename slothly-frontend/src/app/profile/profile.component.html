@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="profile-container">
   <div class="header">
     <div class="profile-pic">
@@ -84,7 +85,24 @@
       <h2>All lots</h2>
       <a href="/material">View all</a>
       <div class="photos">
-        <texture-cards></texture-cards>
+        <div class="card-container">
+          <div *ngFor="let material of materials;">
+            <div class="card">
+              <div class="card-header">
+              </div>
+              <div class="card-body">
+                <h3>{{material.name}}</h3>
+                <p>{{material.description}}</p>
+                <div class="author">
+                  <p>{{material.author}}</p>
+                </div>
+                <div class="card-footer">
+                  <span class="price">${{material.price}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </ng-template>

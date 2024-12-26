@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../authentication/auth.service';
 import {MaterialService} from '../material/material.service';
 import {Router} from '@angular/router';
+import {TextureCardsService} from '../texture-cards/texture-cards.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,15 +17,18 @@ export class ProfileComponent implements OnInit {
   isStatFormVisible: boolean = false;
   user: string = '';
   material = {name: '', description: '', price: 0, type: '', author: ''};
-
-  constructor(private profileService: AuthService,
+  materials: any = [];
+  constructor(private cards: TextureCardsService,
               private materialService: MaterialService,
               private auth: AuthService,
               private router: Router) { }
 
   ngOnInit() {
-    this.profileService.getUserProfile().subscribe((data: any) => {
+    this.auth.getUserProfile().subscribe((data: any) => {
       this.profile = data;
+    });
+    this.cards.getTexturesCards().subscribe((result) => {
+      this.materials = result;
     });
   }
 
@@ -41,7 +45,7 @@ export class ProfileComponent implements OnInit {
 
   onUpdate() {
     console.log(this.profile);
-    this.profileService.updateProfile(this.profile).subscribe(() => {
+    this.auth.updateProfile(this.profile).subscribe(() => {
     });
     this.toggleEditForm();
   }

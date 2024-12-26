@@ -19,10 +19,10 @@ export class MainComponent {
   }
 
   ngOnInit() {
-    this.Cards.getTexturesCards().subscribe((result: Material[]) => {
-      this.textures = result.filter((cards: Material) => cards.type === 'Texture');
-      this.mockups = result.filter((cards: Material) => cards.type === 'Mockup');
-      this.icons = result.filter((cards: Material) => cards.type === 'Icon');
+    this.Cards.getAllCards().subscribe((result: Material[]) => {
+      this.textures = result.filter(material => material.type === 'texture');
+      this.mockups = result.filter(material => material.type === 'mockup');
+      this.icons = result.filter(material => material.type === 'icon');
     });
   }
 }
