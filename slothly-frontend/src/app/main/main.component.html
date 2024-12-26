@@ -3,18 +3,17 @@
   <ul class="type-list">
     <li class="type-item">
       <div class="type-section">
-        <a class="type-link" href="#">
+        <a class="type-link" (click)="showTextureCards()">
           <img src="/texture-icon.png" alt="Texture logo" class="type-link-logo">
           Textures
         </a>
         <div class="texture-cards">
-
         </div>
       </div>
     </li>
     <li class="type-item">
       <div class="type-section">
-        <a class="type-link" href="#">
+        <a class="type-link" (click)="showMockupCards()">
           <img src="/mockup.png" alt="Mockup logo" class="type-link-logo">
           Mockups
         </a>
@@ -22,14 +21,90 @@
     </li>
     <li class="type-item">
       <div class="type-section">
-        <a class="type-link" href="#">
+        <a class="type-link" (click)="showIconCards()">
           <img src="/svg.png" alt="Icons logo" class="type-link-logo">
           Icons
         </a>
       </div>
     </li>
   </ul>
-  <div class="product-cards-container">
-    <texture-cards [type]="'Textures'" [cards]="textures"></texture-cards>
-  </div>
+  <ng-template #textureCards>
+    <div class="product-cards-container">
+      <div class="card-container">
+        <div *ngFor="let material of textures;">
+          <div class="card">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+              <h3>{{material.name}}</h3>
+              <p>{{material.description}}</p>
+              <div class="author">
+                <p>{{material.author}}</p>
+              </div>
+              <div class="card-footer">
+                <span class="price">${{material.price}}</span>
+                <button class="add-to-cart" (click)="addMaterial(material)">ADD TO CART</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #Icons>
+    <div class="product-cards-container">
+      <div class="card-container">
+        <div *ngFor="let material of icons;">
+          <div class="card">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+              <h3>{{material.name}}</h3>
+              <p>{{material.description}}</p>
+              <div class="author">
+                <p>{{material.author}}</p>
+              </div>
+              <div class="card-footer">
+                <span class="price">${{material.price}}</span>
+                <button class="add-to-cart" (click)="addMaterial(material)">ADD TO CART</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #allCards>
+    <div class="product-cards-container">
+      <texture-cards></texture-cards>
+    </div>
+  </ng-template>
+  <ng-template #mockupsCards>
+    <div class="product-cards-container">
+      <div class="card-container">
+        <div *ngFor="let material of mockups;">
+          <div class="card">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+              <h3>{{material.name}}</h3>
+              <p>{{material.description}}</p>
+              <div class="author">
+                <p>{{material.author}}</p>
+              </div>
+              <div class="card-footer">
+                <span class="price">${{material.price}}</span>
+                <button class="add-to-cart" (click)="addMaterial(material)">ADD TO CART</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div *ngIf="showTextures else textureCards" class="edit-form"></div>
+  <div *ngIf="showAll else allCards" class="edit-form"></div>
+  <div *ngIf="showMockups else mockupsCards" class="edit-form"></div>
+  <div *ngIf="showIcons else Icons" class="edit-form"></div>
 </div>

@@ -20,9 +20,7 @@ export class TextureCardsComponent implements OnInit {
   material = {name: '', description: '', price: 0, type: '', author: ''};
 
   constructor(
-    private helloWorldService: TextureCardsService,
-    private auth: AuthService,
-    private router: Router,
+    private textureCardsService: TextureCardsService,
     private cartService: CartService) { }
 
   @Input() type: string = '';
@@ -30,7 +28,7 @@ export class TextureCardsComponent implements OnInit {
 
   ngOnInit() {
     this.materials = [];
-    this.helloWorldService.getAllCards().subscribe((result) => {
+    this.textureCardsService.getAllCards().subscribe((result) => {
       console.log(result);
       this.materials = result;
     });
