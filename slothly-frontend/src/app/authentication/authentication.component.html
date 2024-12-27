@@ -2,25 +2,40 @@
   <section class="wrapper">
     <div class="form signup">
       <header>Signup</header>
-      <form action="#">
-        <input type="text" placeholder="Full name" [(ngModel)]="user.username" name="username" required />
-        <input type="password" placeholder="Password" [(ngModel)]="user.password" name="password" required />
-        <div class="checkbox">
-          <input type="checkbox" id="signupCheck" required/>
-          <label for="signupCheck">I accept all terms & conditions</label>
+      <form [formGroup]="signupForm" (ngSubmit)="onSignUp()">
+        <input type="text" placeholder="Full name" formControlName="username" required />
+        <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">
+          <small *ngIf="signupForm.get('username')?.errors?.['required']">Username is required.</small>
         </div>
-        <input type="submit" (click)="onSignUp()" value="Signup" />
+        <input type="password" placeholder="Password" formControlName="password" required />
+        <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+          <small *ngIf="signupForm.get('password')?.errors?.['required']">Password is required.</small>
+          <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="signupCheck" formControlName="terms" required />
+          <label for="signupCheck">I accept all terms & conditions</label>
+          <div *ngIf="signupForm.get('terms')?.invalid && signupForm.get('terms')?.touched">
+            <small *ngIf="signupForm.get('terms')?.errors?.['requiredTrue']">You must accept the terms and conditions.</small>
+          </div>
+        </div>
+        <input type="submit" value="Signup" [disabled]="signupForm.invalid" />
       </form>
     </div>
     <div class="form login">
       <header>Login</header>
-      <form action="#">
-        <input type="text" placeholder="Username" [(ngModel)]="username" name="username" required />
-        <input type="password" placeholder="Password" [(ngModel)]="password" name = "password" required />
+      <form [formGroup]="loginForm" (ngSubmit)="onLogIn()">
+        <input type="text" placeholder="Username" formControlName="username" required />
+        <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          <small *ngIf="loginForm.get('username')?.errors?.['required']">Username is required.</small>
+        </div>
+        <input type="password" placeholder="Password" formControlName="password" required />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+        </div>
         <a href="#">Forgot password?</a>
-        <input type="submit" (click)="onLogIn()" value="Login" />
+        <input type="submit" value="Login" [disabled]="loginForm.invalid" />
       </form>
     </div>
   </section>
 </div>
-

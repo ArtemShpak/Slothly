@@ -35,6 +35,7 @@ body {
 }
 
 .profile-info {
+  font-family: "Poppins", sans-serif;
   flex-grow: 1;
 }
 
@@ -45,6 +46,7 @@ body {
 }
 
 button {
+  font-family: "Poppins", sans-serif;
   background: #fff;
   color: darkgreen;
   border: none;
@@ -86,6 +88,7 @@ button:hover {
 }
 
 .about h2 {
+  font-family: "Poppins", sans-serif;
   font-size: 1.2rem;
   margin-bottom: 10px;
   color: darkgreen;
@@ -98,6 +101,7 @@ button:hover {
 }
 
 .recent-photos h2 {
+  font-family: "Poppins", sans-serif;
   color: darkgreen;
   margin-bottom: 10px;
 }
@@ -134,11 +138,13 @@ form {
 }
 
 label {
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
 }
 
 input,
 textarea {
+  font-family: "Poppins", sans-serif;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -157,6 +163,7 @@ textarea {
 }
 
 button[type="submit"] {
+  font-family: "Poppins", sans-serif;
   background: darkgreen;
   color: #fff;
 }
@@ -180,6 +187,7 @@ button[type="submit"]:hover {
 }
 
 .right-pane h2 {
+  font-family: "Poppins", sans-serif;
   color: darkgreen;
 }
 
@@ -189,6 +197,7 @@ button[type="submit"]:hover {
 }
 
 .form-group label {
+  font-family: "Poppins", sans-serif;
   margin-bottom: 5px;
 }
 
@@ -227,6 +236,7 @@ select.type:focus {
 }
 
 .edit-template {
+  font-family: "Poppins", sans-serif;
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
@@ -259,6 +269,7 @@ body {
 }
 
 .card-header {
+  font-family: "Poppins", sans-serif;
   height: 200px;
   display: flex;
   justify-content: center;
@@ -272,16 +283,19 @@ body {
 }
 
 .card-body {
+  font-family: "Poppins", sans-serif;
   padding: 20px;
   text-align: center;
 }
 
 .card-body h3 {
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   margin: 0;
 }
 
 .card-body p {
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   color: #666;
   margin: 10px 0;
@@ -302,6 +316,7 @@ body {
 }
 
 .card-footer {
+  font-family: "Poppins", sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -309,12 +324,14 @@ body {
 }
 
 .price {
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: bold;
   color: #333;
 }
 
 .add-to-cart {
+  font-family: "Poppins", sans-serif;
   background-color: mediumseagreen;
   color: #fff;
   border: none;
@@ -325,6 +342,10 @@ body {
 
 .add-to-cart:hover {
   background-color: mediumseagreen;
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
 }
 
 
