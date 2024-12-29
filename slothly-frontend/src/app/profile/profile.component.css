@@ -279,7 +279,7 @@ body {
 
 .card-header img {
   max-height: 150px;
-  object-fit: contain;
+  object-fit: fill;
 }
 
 .card-body {
@@ -346,6 +346,11 @@ body {
 
 h1 {
   font-family: "Poppins", sans-serif;
+}
+
+a {
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
 }
 
 

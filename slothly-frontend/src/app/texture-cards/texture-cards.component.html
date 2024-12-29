@@ -2,6 +2,7 @@
  <div *ngFor="let material of materials;">
   <div class="card">
     <div class="card-header">
+      <img *ngIf="material.photo" [src]="'data:image/jpeg;base64,' + material.photo" alt="{{material.name}}">
     </div>
     <div class="card-body">
       <h3>{{material.name}}</h3>

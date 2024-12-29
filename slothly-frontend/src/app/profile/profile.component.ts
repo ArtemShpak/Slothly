@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   isStatFormVisible: boolean = false;
   user: string = '';
   material = {name: '', description: '', price: 0, type: '', author: ''};
+  selectedFile: File | null = null;
   materials: any = [];
   constructor(private cards: TextureCardsService,
               private materialService: MaterialService,
@@ -50,15 +51,32 @@ export class ProfileComponent implements OnInit {
     this.toggleEditForm();
   }
 
+  onFileChange(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
   onCreateMaterial(){
     this.user = this.auth.getLoggedInUserName();
     this.material.author = this.user;
     console.log(this.material);
-    this.materialService.createMaterial(this.material).subscribe((result) => {
-      console.log(result);
-    });
+    const formData = new FormData();
+    formData.append('name', this.material.name);
+    formData.append('description', this.material.description);
+    formData.append('price', this.material.price.toString());
+    formData.append('type', this.material.type);
+    formData.append('author', this.material.author);
+    if (this.selectedFile) {
+      formData.append('photo', this.selectedFile, this.selectedFile.name);
+    }
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+    this.materialService.createMaterial(formData).subscribe((result) => {
+        console.log('Material added successfully', result);
+      }, error => {
+        console.error('Error adding material', error);
+      });
     this.toggleCreateMaterialForm();
-    this.router.navigate(['/profile']);
   }
 
   onLogout() {

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
 body {
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f3fdf3;
@@ -19,13 +20,13 @@ body {
 
 h1 {
   color: darkgreen;
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 p {
   font-size: 1rem;
   margin-bottom: 20px;
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 ul {
@@ -39,7 +40,7 @@ li {
   justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 li span {
@@ -63,16 +64,19 @@ button:hover {
   color: #fff;
 }
 
-input[type="number"] {
+input[type="text"],
+input[type="number"],
+input[type="file"] {
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
-  width: 100px;
   margin-left: 10px;
 }
 
-input[type="number"]:focus {
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
   outline: none;
   border-color: darkgreen;
 }

@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div>
   <h1>Materials</h1>
   <p>Logged in as: {{ user }}</p>
@@ -5,8 +6,11 @@
     <li *ngFor="let material of materials">
       <span>{{ material.name }} - ${{ material.price }}</span>
       <button (click)="deleteMaterial(material.id)">Delete</button>
+      <input type="text" [(ngModel)]="material.name" placeholder="Name" />
+      <input type="text" [(ngModel)]="material.description" placeholder="Description" />
       <input type="number" [(ngModel)]="material.price" />
-      <button (click)="updateMaterial(material.id, material.price)">Update Price</button>
+      <input type="file" (change)="onFileChange($event, material)" />
+      <button (click)="updateMaterial(material.id, material.name, material.description, material.price, material.selectedFile)">Update</button>
     </li>
   </ul>
 </div>

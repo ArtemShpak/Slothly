@@ -31,8 +31,8 @@ body {
 }
 
 .card-header img {
-  max-height: 150px;
-  object-fit: contain;
+  max-height: 175px;
+  object-fit: fill;
 }
 
 .card-body {

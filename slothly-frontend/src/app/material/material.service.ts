@@ -10,19 +10,19 @@ export class MaterialService {
 
   constructor(private http: HttpClient) { }
 
-  getMaterials(): Observable<Material[]> {
-    return this.http.get<Material[]>(`http://localhost:8080/api/v1/materials`);
+  getMaterials() {
+    return this.http.get(`http://localhost:8080/api/v1/materials`);
   }
 
-  createMaterial(material: any){
-    return this.http.post('http://localhost:8080/api/v1/addMaterial', material);
+  createMaterial(formData: FormData){
+    return this.http.post('http://localhost:8080/api/v1/addMaterial', formData);
   }
 
   deleteMaterial(id: number): Observable<void> {
     return this.http.delete<void>(`http://localhost:8080/api/v1/removeMaterial/${id}`);
   }
 
-  updateMaterial(id: number, material: Material): Observable<Material> {
-    return this.http.put<Material>(`http://localhost:8080/api/v1/updateMaterial/${id}`, material);
+  updateMaterial(id: number, formData: FormData): Observable<Material> {
+    return this.http.put<Material>(`http://localhost:8080/api/v1/updateMaterial/${id}`, formData);
   }
 }

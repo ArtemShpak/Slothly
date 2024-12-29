@@ -16,20 +16,20 @@
       <h2>Edit Profile</h2>
       <form>
         <div class="form-group">
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" [(ngModel)]="profile.firstName" name="firstName" required>
-      </div>
-      <div class="form-group">
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" [(ngModel)]="profile.lastName" name="lastName" required>
-      </div>
-      <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea id="description" [(ngModel)]="profile.description" name="description" required></textarea>
-      </div>
-      <button type="submit" (click)="onUpdate()">Save</button>
-      <button type="button" (click)="toggleEditForm()">Cancel</button>
-    </form>
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" [(ngModel)]="profile.firstName" name="firstName" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" [(ngModel)]="profile.lastName" name="lastName" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea id="description" [(ngModel)]="profile.description" name="description" required></textarea>
+        </div>
+        <button type="submit" (click)="onUpdate()">Save</button>
+        <button type="button" (click)="toggleEditForm()">Cancel</button>
+      </form>
     </div>
   </ng-template>
   <ng-template #Create>
@@ -42,8 +42,12 @@
             <input type="text" [(ngModel)]="material.name" id="name" placeholder="Name" name="name">
           </div>
           <div class="form-group">
-            <label for="type">Type</label>
-            <select [(ngModel)]="material.type" class="type" name="type">
+            <label for="photo">Photo:</label>
+            <input type="file" id="photo" (change)="onFileChange($event)">
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <select [(ngModel)]="material.type" class="type" name="mat_type">
               <option value="Texture">Texture</option>
               <option value="Mockup">Mockup</option>
               <option value="Icon">Icon</option>
@@ -64,19 +68,19 @@
   </ng-template>
   <ng-template #Info>
     <div class="stats">
-    <div>
-      <strong>{{materials.length}}</strong>
-      <p>Lots</p>
+      <div>
+        <strong>{{materials.length}}</strong>
+        <p>Lots</p>
+      </div>
+      <div>
+        <strong>745</strong>
+        <p>Followers</p>
+      </div>
+      <div>
+        <strong>340</strong>
+        <p>Following</p>
+      </div>
     </div>
-    <div>
-      <strong>745</strong>
-      <p>Followers</p>
-    </div>
-    <div>
-      <strong>340</strong>
-      <p>Following</p>
-    </div>
-  </div>
     <div class="about">
       <h2>About</h2>
       <p>{{profile.description}}</p>
@@ -89,6 +93,7 @@
           <div *ngFor="let material of materials;">
             <div class="card">
               <div class="card-header">
+                <img *ngIf="material.photo" [src]="'data:image/jpeg;base64,' + material.photo" alt="{{material.name}}">
               </div>
               <div class="card-body">
                 <h3>{{material.name}}</h3>
@@ -109,9 +114,7 @@
   <div *ngIf="isCreateFormVisible else Create" class="edit-form">
   </div>
   <div *ngIf="isEditFormVisible else Edit" class="edit-form">
-</div>
+  </div>
   <div *ngIf="isStatFormVisible else Info" class="edit-form">
   </div>
 </div>
-
-
