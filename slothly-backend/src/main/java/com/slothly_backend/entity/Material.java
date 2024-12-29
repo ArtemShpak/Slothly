@@ -20,4 +20,7 @@ public class Material {
     private int price;
     private String type;
     private String author;
+
+    @Lob
+    private byte[] photo;
 }
